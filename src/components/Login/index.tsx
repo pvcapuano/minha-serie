@@ -5,11 +5,12 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
 
   function handleSignUp(event: FormEvent) {
     event.preventDefault();
 
-    if (email === "" || password === "") {
+    if (!email || !password) {
       toast.error("Preencha todos os campos.");
       return;
     }
@@ -18,14 +19,14 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>My Workout | Login</title>
+        <title>My Workout | {isLoggingIn ? "Login" : "Register"}</title>
       </Head>
       <form
         className="flex-1 text-xs sm:text-sm flex flex-col justify-center items-center gap-2 sm:gap-4"
         onSubmit={handleSignUp}
       >
         <h1 className="font-extrabold select-none text-2xl sm:text-4xl">
-          LOGIN
+          {isLoggingIn ? "Login" : "Register"}
         </h1>
 
         <input
@@ -46,8 +47,17 @@ const Login = () => {
           type="submit"
           className="w-full max-w-[40ch] border border-white border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-white after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900"
         >
-          <h2 className="relative z-20">Sign In</h2>
+          <h2 className="relative z-20">
+            {" "}
+            {isLoggingIn ? "Sign In" : "Sign Up"}
+          </h2>
         </button>
+        <h2
+          onClick={() => setIsLoggingIn(!isLoggingIn)}
+          className="duration-300 hover:scale-110 cursor-pointer uppercase"
+        >
+          {!isLoggingIn ? "Sign In" : "Sign Up"}
+        </h2>
       </form>
     </>
   );
