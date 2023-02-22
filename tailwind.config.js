@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        hero: "url('https://cdn.shopify.com/s/files/1/0277/7939/9793/files/floor_shot_1000x.jpg?v=1623677989')",
+      },
+    },
   },
   plugins: [],
 };

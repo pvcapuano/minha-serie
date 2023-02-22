@@ -21,11 +21,12 @@ const Login = () => {
       <Head>
         <title>My Workout | {isLoggingIn ? "Login" : "Register"}</title>
       </Head>
+
       <form
         className="flex-1 text-xs sm:text-sm flex flex-col justify-center items-center gap-2 sm:gap-4"
         onSubmit={handleSignUp}
       >
-        <h1 className="font-extrabold select-none text-2xl sm:text-4xl">
+        <h1 className="font-extrabold select-none text-2xl sm:text-6xl ">
           {isLoggingIn ? "Login" : "Register"}
         </h1>
 
@@ -41,7 +42,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="outline-none duration-300 border-b-2 border-solid border-white focus:border-cyan-500 text-slate-900 p-2 w-full max-w-[40ch]"
+          className="outline-none duration-300 border-b-2 border-solid border-white focus:border-cyan-500  text-slate-900 p-2 w-full max-w-[40ch]"
         />
         <button
           type="submit"
