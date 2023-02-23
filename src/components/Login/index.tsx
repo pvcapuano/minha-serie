@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>My Workout | {isLoggingIn ? "Login" : "Register"}</title>
+        <title>{`My Workout | ${isLoggingIn ? "Login" : "Register"}`}</title>
       </Head>
 
       <form
