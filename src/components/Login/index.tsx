@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useAuth } from "context/AuthContext";
 
 interface FormInput {
   email: string;
@@ -11,31 +11,29 @@ interface FormInput {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const [isLoggingIn, setIsLoggingIn] = useState(true);
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    clearErrors,
-  } = useForm<FormInput>();
-  const onSubmit: SubmitHandler<FormInput> = (data) => console.log(data);
+  const { login, signup, currentUser } = useAuth();
 
-  /* function handleSignUp(event: FormEvent) {
+  console.log(currentUser);
+
+  async function submitHandler(event: FormEvent) {
     event.preventDefault();
-
     if (!email || !password) {
-      toast.error("Preencha todos os campos.");
+      toast.error("Complete your email or password.");
       return;
     }
-  } */
 
-  function changeText() {
-    setIsLoggingIn(!isLoggingIn);
-  }
-
-  function clearErrorLog() {
-    clearErrors();
+    if (isLoggingIn) {
+      try {
+        await login(email, password);
+      } catch (err) {
+        toast.error("Incorrect email or password.");
+      }
+      return;
+    }
+    await signup(email, password);
   }
 
   return (
@@ -46,7 +44,7 @@ const Login = () => {
 
       <form
         className="flex-1 text-xs sm:text-sm flex flex-col justify-center items-center gap-2 sm:gap-4"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={submitHandler}
       >
         <h1 className="font-extrabold select-none text-2xl sm:text-6xl ">
           {isLoggingIn ? "Login" : "Register"}
@@ -59,32 +57,20 @@ const Login = () => {
             </div>
           )} */}
         <input
-          {...register("email", { required: true, maxLength: 20 })}
           type="text"
-          /* value={email}
-          onChange={(e) => setEmail(e.target.value)} */
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           className="outline-none duration-300 border-b-2 border-solid border-white focus:border-cyan-500 text-slate-900 p-2 w-full max-w-[40ch]"
         />
-        {errors.email?.type === "required" && (
-          <div className="border-rose-500 border  border-solid text-rose-300 p-2	">
-            <p role="alert">Email is required</p>
-          </div>
-        )}
 
         <input
-          {...register("password", { required: true, maxLength: 20 })}
           type="password"
-          /* value={password}
-          onChange={(e) => setPassword(e.target.value)} */
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           className="outline-none duration-300 border-b-2 border-solid border-white focus:border-cyan-500  text-slate-900 p-2 w-full max-w-[40ch]"
         />
-        {errors.password?.type === "required" && (
-          <div className="border-rose-500 border  border-solid text-rose-300 p-2	">
-            <p role="alert">Password is required</p>
-          </div>
-        )}
 
         <button
           type="submit"
@@ -97,7 +83,7 @@ const Login = () => {
         </button>
         <h2
           onClick={() => {
-            changeText(), clearErrorLog();
+            setIsLoggingIn(!isLoggingIn);
           }}
           className="duration-300 hover:scale-110 cursor-pointer uppercase"
         >
