@@ -1,10 +1,17 @@
 import React from "react";
+import Head from "next/head";
 
 const UserDashboard = () => {
   return (
-    <div>
-      <h1>dashboard</h1>
-    </div>
+    <>
+      <Head>
+        <title>My Workout | Training</title>
+      </Head>
+
+      <div>
+        <h1>dashboard</h1>
+      </div>
+    </>
   );
 };
 

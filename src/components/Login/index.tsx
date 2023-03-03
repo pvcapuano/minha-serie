@@ -16,8 +16,6 @@ const Login = () => {
 
   const { login, signup, currentUser } = useAuth();
 
-  console.log(currentUser);
-
   async function submitHandler(event: FormEvent) {
     event.preventDefault();
     if (!email || !password) {
