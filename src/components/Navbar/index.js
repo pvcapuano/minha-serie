@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "../Modal";
 
 const Navbar = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState(false);
   return (
     <>
       {openModal && <Modal setOpenModal={setOpenModal} />}

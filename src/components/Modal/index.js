@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
 import { useAuth } from "../../../context/AuthContext";
 
-const Modal = (props: any) => {
+const Modal = (props) => {
   const { setOpenModal } = props;
-  const [_document, set_document] = useState<any | null>(null);
+  const [_document, set_document] = useState(null);
   const { logout } = useAuth();
 
   useEffect(() => {

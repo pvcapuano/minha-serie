@@ -3,20 +3,16 @@ import React, { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "context/AuthContext";
 
-interface FormInput {
-  email: string;
-  password: string;
-}
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoggingIn, setIsLoggingIn] = useState(true);
 
-  const { login, signup, currentUser } = useAuth();
+  const { login, signup, currentUser, signInWithGoogle } = useAuth();
 
-  async function submitHandler(event: FormEvent) {
+
+  async function submitHandler(event) {
     event.preventDefault();
     if (!email || !password) {
       toast.error("Complete your email or password.");
@@ -47,13 +43,6 @@ const Login = () => {
         <h1 className="font-extrabold select-none text-2xl sm:text-6xl ">
           {isLoggingIn ? "Login" : "Register"}
         </h1>
-
-        {/* {errors.email?.type === "required" &&
-          errors.password?.type === "required" && (
-            <div className="border-rose-500 border text-center border-solid text-rose-300 p-2 text-red">
-              <p role="alert">Email and Password is required</p>
-            </div>
-          )} */}
         <input
           type="text"
           value={email}
@@ -87,6 +76,7 @@ const Login = () => {
         >
           {!isLoggingIn ? "Sign In" : "Sign Up"}
         </h2>
+        <button onClick={signInWithGoogle}>Google</button>
       </form>
     </>
   );
