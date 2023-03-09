@@ -10,6 +10,7 @@ import {
   addDoc,
   setDoc,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
@@ -28,11 +29,16 @@ const UserDashboard = () => {
   const [newKilos, setNewKilos] = useState(0);
   const [newRound, setNewRound] = useState(0);
 
+  //update
+  const [updatedExercise, setUpdatedExercise] = useState("");
+  const [updatedKilos, setUpdatedKilos] = useState("");
+  const [updatedRound, setUpdatedRound] = useState("");
+
   useEffect(() => {
-    getTraining();
+    getTrainingList();
   }, []);
 
-  const getTraining = async () => {
+  const getTrainingList = async () => {
     try {
       const data = await getDocs(trainingCollectionRef);
       const filteredData = data.docs.map((doc) => ({
@@ -53,15 +59,20 @@ const UserDashboard = () => {
         round: newRound,
       });
 
-      getTraining();
+      getTrainingList();
     } catch (err) {
       console.error(err);
     }
   };
 
   const deleteTraining = async (id) => {
-    const trainingDoc = doc(db, "users", id);
+    const trainingDoc = doc(db, "training", id);
     await deleteDoc(trainingDoc);
+  };
+
+  const updateTraining = async (id) => {
+    const trainingDoc = doc(db, "training", id);
+    await updateDoc(trainingDoc, { exercise: updatedExercise });
   };
 
   return (
@@ -108,6 +119,12 @@ const UserDashboard = () => {
 
               <button onClick={() => deleteTraining(training.id)}>
                 delete
+              </button>
+
+              <input onChange={(e) => setUpdatedExercise(e.target.value)} />
+              <button onClick={() => updateTraining(training.id)}>
+                {" "}
+                atualizar
               </button>
             </div>
           ))}
