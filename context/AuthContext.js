@@ -18,15 +18,18 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
   function signup(email, password) {
     createUserWithEmailAndPassword(auth, email, password);
     return;
   }
 
-  function signInWithGoogle(email, password) {
-    signInWithPopup(auth, googleProvider);
-    return;
+  async function signInWithGoogle() {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      return;
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function login(email, password) {

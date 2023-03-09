@@ -9,6 +9,7 @@ import {
   getDoc,
   addDoc,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
@@ -58,6 +59,11 @@ const UserDashboard = () => {
     }
   };
 
+  const deleteTraining = async (id) => {
+    const trainingDoc = doc(db, "users", id);
+    await deleteDoc(trainingDoc);
+  };
+
   return (
     <>
       <Head>
@@ -99,6 +105,10 @@ const UserDashboard = () => {
               <h1>{training.exercise}</h1>
               <h1>{training.kilos}</h1>
               <h1>{training.round}</h1>
+
+              <button onClick={() => deleteTraining(training.id)}>
+                delete
+              </button>
             </div>
           ))}
         </div>

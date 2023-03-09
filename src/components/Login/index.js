@@ -29,6 +29,7 @@ const Login = () => {
     }
     await signup(email, password);
   }
+  
 
   return (
     <>
