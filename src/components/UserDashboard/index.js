@@ -30,9 +30,12 @@ const UserDashboard = () => {
   const [newRound, setNewRound] = useState(0);
 
   //update
-  const [updatedExercise, setUpdatedExercise] = useState("");
+  const [updatedExerciseValue, setUpdatedExerciseValue] = useState("");
   const [updatedKilos, setUpdatedKilos] = useState("");
   const [updatedRound, setUpdatedRound] = useState("");
+
+  //edit
+  const [editExercise, setEditExercise] = useState(false);
 
   useEffect(() => {
     getTrainingList();
@@ -75,6 +78,18 @@ const UserDashboard = () => {
     await updateDoc(trainingDoc, { exercise: updatedExercise });
   };
 
+  //update exercise value
+  const handleUpdateExercise = () => {
+    performUpdateExercise(updatedExerciseValue);
+    setUpdatedExerciseValue("");
+    setEditExercise(false);
+  };
+
+  const performUpdateExercise = (newExerciseValue, id) => {
+    // Do something with the new exercise value, like save it to a database
+    console.log("New exercise value:", newExerciseValue);
+  };
+
   return (
     <>
       <Head>
@@ -112,35 +127,46 @@ const UserDashboard = () => {
 
         <div>
           {trainingList.map((training) => (
-            <div>
-              <h1>{training.exercise}</h1>
-              <h1>{training.kilos}</h1>
-              <h1>{training.round}</h1>
+            <div className="p-2 relative sm:p-3 border flex items-stretch border-white border-solid ">
+              {!editExercise ? (
+                <div className="outline-none p-2 text-black bg-white  sm:text-lg w-3/6 flex justify-between items-center">
+                  {training.exercise}
+                  <i
+                    onClick={() => setEditExercise(true)}
+                    className="fa-solid fa-pencil px-2 duration-300 hover:rotate-45 cursor-pointer"
+                  ></i>
+                </div>
+              ) : (
+                <div className="outline-none p-2 text-black bg-white sm:text-lg w-3/6 flex justify-between items-center">
+                  <input
+                    onChange={(e) => setUpdatedExerciseValue(e.target.value)}
+                    className="bg-inherit flex-1 text-black outline-none"
+                  />
+                  <i
+                    onClick={handleUpdateExercise}
+                    className="fa-solid fa-check px-2 duration-300 hover:scale-125 cursor-pointer"
+                  ></i>
+                </div>
+              )}
 
-              <button onClick={() => deleteTraining(training.id)}>
-                delete
-              </button>
+              {/* <div className="outline-none p-1 text-black  sm:text-lg w-1/6">
+                {training.kilos}
+              </div>
+              <div className="outline-none p-1 text-black  sm:text-lg w-1/6">
+                {training.round}
+              </div> */}
 
               <input onChange={(e) => setUpdatedExercise(e.target.value)} />
               <button onClick={() => updateTraining(training.id)}>
-                {" "}
                 atualizar
+              </button>
+
+              <button onClick={() => deleteTraining(training.id)}>
+                <i className="fa-solid fa-trash-can px-2 duration-300 hover:scale-125 cursor-pointer"></i>
               </button>
             </div>
           ))}
         </div>
-        {/* {!userInfo && (
-          <>
-            {Object.keys(todoList).map((item, i) => (
-              <div key={i}>
-                <p>testando</p>
-                <h1>{item.todo}</h1>
-                <h1>{item.kilos}</h1>
-                <h1>{item.round}</h1>
-              </div>
-            ))}
-          </>
-        )} */}
       </div>
     </>
   );
