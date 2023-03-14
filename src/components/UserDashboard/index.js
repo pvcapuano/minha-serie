@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { useAuth } from "context/AuthContext";
-import Card from "../Card";
 import {
   collection,
   doc,
   getDocs,
-  getDoc,
   addDoc,
-  setDoc,
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 const UserDashboard = () => {
-  const { userInfo, currentUser } = useAuth();
-  const [edit, setEdit] = useState(null);
-  const [todo, setTodo] = useState("");
-  const [kilos, setKilos] = useState("");
-  const [round, setRound] = useState("");
-  const [todoList, setTodoList] = useState({});
-
-  //new
-  const [trainingList, setTrainingList] = useState([]);
   const trainingCollectionRef = collection(db, "training");
+
+  //states
+  const [trainingList, setTrainingList] = useState([]);
   const [newExercise, setNewExercise] = useState("");
   const [newKilos, setNewKilos] = useState(0);
   const [newRound, setNewRound] = useState(0);
@@ -80,20 +70,8 @@ const UserDashboard = () => {
       kilos: updatedKilos,
       round: updatedRound,
     });
+    setEditExercise(false);
     getTrainingList();
-    setEditExercise(false);
-  };
-
-  //update exercise value
-  const handleUpdateExercise = () => {
-    performUpdateExercise(updatedExerciseValue);
-    setUpdatedExerciseValue("");
-    setEditExercise(false);
-  };
-
-  const performUpdateExercise = (newExerciseValue, id) => {
-    // Do something with the new exercise value, like save it to a database
-    console.log("New exercise value:", newExerciseValue);
   };
 
   return (
@@ -133,23 +111,16 @@ const UserDashboard = () => {
 
         <div>
           {trainingList.map((training) => (
-            <div /* className="p-2 relative sm:p-3 border flex items-stretch border-white border-solid " */
-            >
+            <div>
               {!editExercise ? (
-                <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex justify-between items-center bg-white gap-3 sm:gap-5">
-                  <div className="outline-none p-2 text-black bg-white  sm:text-lg w-3/6 ">
-                    {training.exercise}
-                  </div>
-                  <div className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6 ">
-                    {training.kilos}
-                  </div>
-                  <div className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6">
-                    {training.round}
-                  </div>
-                  <div className="w-fit px-4 sm:px-6 py-2 sm:py-3 text-black font-medium text-base flex justify-between ">
+                <div className="p-2 flex items-center justify-between border border-white border-solid ">
+                  <div className="flex-initial flex">{training.exercise}</div>
+                  <div className="flex-2 flex">{training.kilos} Kgs</div>
+                  <div className="flex-3 flex">{training.round} Rounds</div>
+                  <div className="w-fit text-white font-medium text-base flex items-center justify-between ">
                     <i
                       onClick={() => setEditExercise(true)}
-                      className="fa-solid fa-pencil px-2 duration-300 hover:rotate-45 cursor-pointer"
+                      className="fa-solid fa-pencil duration-300 hover:rotate-45 cursor-pointer"
                     ></i>
                     <button onClick={() => deleteTraining(training.id)}>
                       <i className="fa-solid fa-trash-can px-2 duration-300 hover:scale-125 cursor-pointer"></i>
@@ -157,20 +128,26 @@ const UserDashboard = () => {
                   </div>
                 </div>
               ) : (
-                <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex justify-between items-center bg-white gap-3 sm:gap-5">
+                <div className="p-2 flex items-center justify-between text-black border border-white border-solid ">
                   <input
+                    value={training.exercise}
+                    placeholder="Exercise"
                     onChange={(e) => setUpdatedExerciseValue(e.target.value)}
-                    className="outline-none p-2 text-black bg-white  sm:text-lg w-3/6 "
+                    className="flex-initial flex"
                   />
                   <input
+                    value={training.kilos}
+                    placeholder="Kg"
                     onChange={(e) => setUpdatedKilos(e.target.value)}
-                    className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6"
+                    className="flex-2 flex"
                   />
                   <input
+                    value={training.round}
+                    placeholder="Round"
                     onChange={(e) => setUpdatedRound(e.target.value)}
-                    className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6"
+                    className="flex-3 flex"
                   />
-                  <div className="w-fit px-4 sm:px-6 py-2 sm:py-3 text-black font-medium text-base flex justify-between ">
+                  <div className="w-fit text-white font-medium text-base flex items-center justify-between ">
                     <i
                       onClick={() => updateTraining(training.id)}
                       className="fa-solid fa-check px-2 duration-300 hover:scale-125 cursor-pointer"
