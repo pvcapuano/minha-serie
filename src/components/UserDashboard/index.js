@@ -75,7 +75,13 @@ const UserDashboard = () => {
 
   const updateTraining = async (id) => {
     const trainingDoc = doc(db, "training", id);
-    await updateDoc(trainingDoc, { exercise: updatedExercise });
+    await updateDoc(trainingDoc, {
+      exercise: updatedExerciseValue,
+      kilos: updatedKilos,
+      round: updatedRound,
+    });
+    getTrainingList();
+    setEditExercise(false);
   };
 
   //update exercise value
@@ -127,43 +133,60 @@ const UserDashboard = () => {
 
         <div>
           {trainingList.map((training) => (
-            <div className="p-2 relative sm:p-3 border flex items-stretch border-white border-solid ">
+            <div /* className="p-2 relative sm:p-3 border flex items-stretch border-white border-solid " */
+            >
               {!editExercise ? (
-                <div className="outline-none p-2 text-black bg-white  sm:text-lg w-3/6 flex justify-between items-center">
-                  {training.exercise}
-                  <i
-                    onClick={() => setEditExercise(true)}
-                    className="fa-solid fa-pencil px-2 duration-300 hover:rotate-45 cursor-pointer"
-                  ></i>
+                <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex justify-between items-center bg-white gap-3 sm:gap-5">
+                  <div className="outline-none p-2 text-black bg-white  sm:text-lg w-3/6 ">
+                    {training.exercise}
+                  </div>
+                  <div className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6 ">
+                    {training.kilos}
+                  </div>
+                  <div className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6">
+                    {training.round}
+                  </div>
+                  <div className="w-fit px-4 sm:px-6 py-2 sm:py-3 text-black font-medium text-base flex justify-between ">
+                    <i
+                      onClick={() => setEditExercise(true)}
+                      className="fa-solid fa-pencil px-2 duration-300 hover:rotate-45 cursor-pointer"
+                    ></i>
+                    <button onClick={() => deleteTraining(training.id)}>
+                      <i className="fa-solid fa-trash-can px-2 duration-300 hover:scale-125 cursor-pointer"></i>
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <div className="outline-none p-2 text-black bg-white sm:text-lg w-3/6 flex justify-between items-center">
+                <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex justify-between items-center bg-white gap-3 sm:gap-5">
                   <input
                     onChange={(e) => setUpdatedExerciseValue(e.target.value)}
-                    className="bg-inherit flex-1 text-black outline-none"
+                    className="outline-none p-2 text-black bg-white  sm:text-lg w-3/6 "
                   />
-                  <i
-                    onClick={handleUpdateExercise}
-                    className="fa-solid fa-check px-2 duration-300 hover:scale-125 cursor-pointer"
-                  ></i>
+                  <input
+                    onChange={(e) => setUpdatedKilos(e.target.value)}
+                    className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6"
+                  />
+                  <input
+                    onChange={(e) => setUpdatedRound(e.target.value)}
+                    className="outline-none p-2 text-black bg-white  sm:text-lg w-1/6"
+                  />
+                  <div className="w-fit px-4 sm:px-6 py-2 sm:py-3 text-black font-medium text-base flex justify-between ">
+                    <i
+                      onClick={() => updateTraining(training.id)}
+                      className="fa-solid fa-check px-2 duration-300 hover:scale-125 cursor-pointer"
+                    ></i>
+                  </div>
                 </div>
               )}
 
-              {/* <div className="outline-none p-1 text-black  sm:text-lg w-1/6">
-                {training.kilos}
-              </div>
-              <div className="outline-none p-1 text-black  sm:text-lg w-1/6">
-                {training.round}
-              </div> */}
-
-              <input onChange={(e) => setUpdatedExercise(e.target.value)} />
+              {/* <input onChange={(e) => setUpdatedExercise(e.target.value)} />
               <button onClick={() => updateTraining(training.id)}>
                 atualizar
               </button>
 
               <button onClick={() => deleteTraining(training.id)}>
                 <i className="fa-solid fa-trash-can px-2 duration-300 hover:scale-125 cursor-pointer"></i>
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
