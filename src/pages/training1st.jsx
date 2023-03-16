@@ -107,7 +107,7 @@ const Training1st = () => {
   return (
     <>
       <Head>
-        <title>My Workout | 1st Training</title>
+        <title>My Workout | Workout 1</title>
       </Head>
 
       <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col gap-3 sm:gap-5">
@@ -153,20 +153,26 @@ const Training1st = () => {
                       value={updatedExerciseValue}
                       placeholder="Exercise"
                       onChange={(e) => setUpdatedExerciseValue(e.target.value)}
-                      className="w-60 mr-3"
+                      className="w-60 mr-3 p-1 text-black placeholder:p-2"
                     />
                     <div className="flex justify-between items-center">
                       <input
                         value={updatedKilos}
+                        type="number"
                         placeholder="Kg"
-                        onChange={(e) => setUpdatedKilos(e.target.value)}
-                        className="w-20 mr-3"
+                        onChange={(e) =>
+                          setUpdatedKilos(Number(e.target.value))
+                        }
+                        className="w-20 mr-3 p-1 text-black placeholder:p-2"
                       />
                       <input
                         value={updatedRound}
+                        type="number"
                         placeholder="Round"
-                        onChange={(e) => setUpdatedRound(e.target.value)}
-                        className="w-20 mr-3"
+                        onChange={(e) =>
+                          setUpdatedRound(Number(e.target.value))
+                        }
+                        className="w-20 mr-3 p-1 text-black placeholder:p-2"
                       />
                     </div>
                     <div className="w-fit text-white font-medium text-base flex items-center justify-between ">

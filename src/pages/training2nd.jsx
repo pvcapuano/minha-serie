@@ -6,13 +6,13 @@ const Training2nd = () => {
   return (
     <>
       <Head>
-        <title>My Workout | 2nd Training</title>
+        <title>My Workout | Workout 2</title>
       </Head>
 
       <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col gap-3 sm:gap-5">
         <Link href="/">
           <i class="fa-solid fa-arrow-left"></i>
-          Voltar
+          Back
         </Link>
         <h1>Segundo treino</h1>
       </div>

@@ -18,13 +18,13 @@ const UserDashboard = () => {
           className="md:text-2xl text-xl text-center hover:scale-125 cursor-pointer duration-300 border-b-2"
           href="/training1st"
         >
-          1st Training
+          Workout 1
         </Link>
         <Link
           className="md:text-2xl text-xl hover:scale-125 cursor-pointer duration-300 border-b-2"
           href="/training2nd"
         >
-          2nd Training
+          Workout 2
         </Link>
       </div>
     </>
