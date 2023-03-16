@@ -10,6 +10,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "@/config/firebase";
+import { toast } from "react-toastify";
 
 const Training1st = () => {
   const trainingCollectionRef = collection(db, "training");
@@ -77,12 +78,21 @@ const Training1st = () => {
     setNewKilos(0);
     setNewRound(0);
 
+    if (
+      updatedExerciseValue == "" ||
+      updatedKilos == "" ||
+      updatedRound == ""
+    ) {
+      setEditExerciseId(null);
+      toast.error("Please, complete all fields");
+      return;
+    }
+
     await updateDoc(trainingDoc, {
       exercise: updatedExerciseValue,
       kilos: updatedKilos,
       round: updatedRound,
     });
-    /* setEditExercise(false); */
     setEditExerciseId(false);
     getTrainingList();
   };
@@ -138,22 +148,27 @@ const Training1st = () => {
             <div>
               <div key={training.id}>
                 {editExerciseId === training.id ? (
-                  <div>
+                  <div className="p-2 flex items-center  border border-white border-solid mb-3">
                     <input
                       value={updatedExerciseValue}
                       placeholder="Exercise"
                       onChange={(e) => setUpdatedExerciseValue(e.target.value)}
+                      className="w-60 mr-3"
                     />
-                    <input
-                      value={updatedKilos}
-                      placeholder="Kg"
-                      onChange={(e) => setUpdatedKilos(e.target.value)}
-                    />
-                    <input
-                      value={updatedRound}
-                      placeholder="Round"
-                      onChange={(e) => setUpdatedRound(e.target.value)}
-                    />
+                    <div className="flex justify-between items-center">
+                      <input
+                        value={updatedKilos}
+                        placeholder="Kg"
+                        onChange={(e) => setUpdatedKilos(e.target.value)}
+                        className="w-20 mr-3"
+                      />
+                      <input
+                        value={updatedRound}
+                        placeholder="Round"
+                        onChange={(e) => setUpdatedRound(e.target.value)}
+                        className="w-20 mr-3"
+                      />
+                    </div>
                     <div className="w-fit text-white font-medium text-base flex items-center justify-between ">
                       <i
                         onClick={() => updateTraining(training.id)}
@@ -166,13 +181,13 @@ const Training1st = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="p-2 flex items-center justify-between border border-white border-solid mb-3">
-                    <div className="w-20">{training.exercise}</div>
+                  <div className="p-2 flex items-center  border border-white border-solid mb-3">
+                    <div className="w-60 mr-3">{training.exercise}</div>
                     <div className="flex justify-between items-center">
-                      <div>{training.kilos} Kgs</div>
-                      <div>{training.round} Rounds</div>
+                      <div className="w-20 mr-3">{training.kilos} Kgs</div>
+                      <div className="w-20 mr-3">{training.round} Rounds</div>
                     </div>
-                    <div className="w-fit text-white font-medium text-base flex items-center justify-between ">
+                    <div className="w-20 text-white font-medium text-base flex items-center justify-around ">
                       <i
                         onClick={() => editTraining(training.id)}
                         className="fa-solid fa-pencil duration-300 hover:rotate-45 cursor-pointer"
