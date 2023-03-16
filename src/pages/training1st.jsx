@@ -26,13 +26,9 @@ const Training1st = () => {
   const [updatedKilos, setUpdatedKilos] = useState("");
   const [updatedRound, setUpdatedRound] = useState("");
 
-  console.log(updatedExerciseValue);
-  console.log(updatedKilos);
-
-  console.log(updatedRound);
-
   //edit
-  const [editExercise, setEditExercise] = useState(false);
+  /* const [editExercise, setEditExercise] = useState(false); */
+  const [editExerciseId, setEditExerciseId] = useState(null);
 
   useEffect(() => {
     getTrainingList();
@@ -70,6 +66,10 @@ const Training1st = () => {
     await deleteDoc(trainingDoc);
   };
 
+  const editTraining = (id) => {
+    setEditExerciseId(id);
+  };
+
   const updateTraining = async (id) => {
     const trainingDoc = doc(db, "training", id);
 
@@ -82,8 +82,16 @@ const Training1st = () => {
       kilos: updatedKilos,
       round: updatedRound,
     });
-    setEditExercise(false);
+    /* setEditExercise(false); */
+    setEditExerciseId(false);
     getTrainingList();
+  };
+
+  const cancelEditTraining = () => {
+    setEditExerciseId(null);
+    setUpdatedExerciseValue("");
+    setUpdatedKilos("");
+    setUpdatedRound("");
   };
 
   return (
@@ -95,7 +103,7 @@ const Training1st = () => {
       <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col gap-3 sm:gap-5">
         <Link href="/">
           <i class="fa-solid fa-arrow-left"></i>
-          Voltar
+          Back
         </Link>
         <div className="flex flex-col sm:flex-row justify-between">
           <input
@@ -128,7 +136,55 @@ const Training1st = () => {
         <div>
           {trainingList.map((training) => (
             <div>
-              {!editExercise ? (
+              <div key={training.id}>
+                {editExerciseId === training.id ? (
+                  <div>
+                    <input
+                      value={updatedExerciseValue}
+                      placeholder="Exercise"
+                      onChange={(e) => setUpdatedExerciseValue(e.target.value)}
+                    />
+                    <input
+                      value={updatedKilos}
+                      placeholder="Kg"
+                      onChange={(e) => setUpdatedKilos(e.target.value)}
+                    />
+                    <input
+                      value={updatedRound}
+                      placeholder="Round"
+                      onChange={(e) => setUpdatedRound(e.target.value)}
+                    />
+                    <div className="w-fit text-white font-medium text-base flex items-center justify-between ">
+                      <i
+                        onClick={() => updateTraining(training.id)}
+                        className="fa-solid fa-check px-2 duration-300 hover:scale-125 cursor-pointer"
+                      ></i>
+                      <i
+                        onClick={cancelEditTraining}
+                        class="fa-solid fa-xmark px-2 duration-300 hover:scale-125 cursor-pointer"
+                      ></i>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-2 flex items-center justify-between border border-white border-solid mb-3">
+                    <div className="w-20">{training.exercise}</div>
+                    <div className="flex justify-between items-center">
+                      <div>{training.kilos} Kgs</div>
+                      <div>{training.round} Rounds</div>
+                    </div>
+                    <div className="w-fit text-white font-medium text-base flex items-center justify-between ">
+                      <i
+                        onClick={() => editTraining(training.id)}
+                        className="fa-solid fa-pencil duration-300 hover:rotate-45 cursor-pointer"
+                      ></i>
+                      <button onClick={() => deleteTraining(training.id)}>
+                        <i className="fa-solid fa-trash-can px-2 duration-300 hover:scale-125 cursor-pointer"></i>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* {!editExercise ? (
                 <div className="p-2 flex items-center justify-between border border-white border-solid ">
                   <div className="flex-initial flex">{training.exercise}</div>
                   <div className="flex-2 flex">{training.kilos} Kgs</div>
@@ -170,16 +226,7 @@ const Training1st = () => {
                     ></i>
                   </div>
                 </div>
-              )}
-
-              {/* <input onChange={(e) => setUpdatedExercise(e.target.value)} />
-      <button onClick={() => updateTraining(training.id)}>
-        atualizar
-      </button>
-
-      <button onClick={() => deleteTraining(training.id)}>
-        <i className="fa-solid fa-trash-can px-2 duration-300 hover:scale-125 cursor-pointer"></i>
-      </button> */}
+              )} */}
             </div>
           ))}
         </div>
