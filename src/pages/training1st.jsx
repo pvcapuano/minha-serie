@@ -26,6 +26,11 @@ const Training1st = () => {
   const [updatedKilos, setUpdatedKilos] = useState("");
   const [updatedRound, setUpdatedRound] = useState("");
 
+  console.log(updatedExerciseValue);
+  console.log(updatedKilos);
+
+  console.log(updatedRound);
+
   //edit
   const [editExercise, setEditExercise] = useState(false);
 
@@ -67,6 +72,11 @@ const Training1st = () => {
 
   const updateTraining = async (id) => {
     const trainingDoc = doc(db, "training", id);
+
+    setNewExercise("");
+    setNewKilos(0);
+    setNewRound(0);
+
     await updateDoc(trainingDoc, {
       exercise: updatedExerciseValue,
       kilos: updatedKilos,
@@ -136,19 +146,19 @@ const Training1st = () => {
               ) : (
                 <div className="p-2 flex items-center justify-between text-black border border-white border-solid ">
                   <input
-                    value={training.exercise}
+                    value={updatedExerciseValue}
                     placeholder="Exercise"
                     onChange={(e) => setUpdatedExerciseValue(e.target.value)}
                     className="flex-initial flex"
                   />
                   <input
-                    value={training.kilos}
+                    value={updatedKilos}
                     placeholder="Kg"
                     onChange={(e) => setUpdatedKilos(e.target.value)}
                     className="flex-2 flex"
                   />
                   <input
-                    value={training.round}
+                    value={updatedRound}
                     placeholder="Round"
                     onChange={(e) => setUpdatedRound(e.target.value)}
                     className="flex-3 flex"
