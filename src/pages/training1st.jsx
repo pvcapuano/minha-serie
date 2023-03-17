@@ -12,6 +12,7 @@ import {
 import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 import CardItem from "@/components/CardItem";
+import Input from "@/components/Input";
 
 const Training1st = () => {
   const trainingCollectionRef = collection(db, "training");
@@ -117,21 +118,27 @@ const Training1st = () => {
           Back
         </Link>
         <div className="flex flex-col sm:flex-row justify-between">
-          <input
+          {/* <input
+            type="text"
+            placeholder="Exercise"
+            onChange={(e) => setNewExercise(e.target.value)}
+            className="outline-none p-2 text-black   sm:text-lg w-3/6"
+          /> */}
+          <Input
             type="text"
             placeholder="Exercise"
             onChange={(e) => setNewExercise(e.target.value)}
             className="outline-none p-2 text-black   sm:text-lg w-3/6"
           />
-          <input
+          <Input
             type="number"
             placeholder="Kg"
             onChange={(e) => setNewKilos(Number(e.target.value))}
             className="outline-none p-2 text-black  sm:text-lg w-1/6"
           />
-          <input
+          <Input
             type="number"
-            placeholder="Rounds"
+            placeholder="Round"
             onChange={(e) => setNewRound(Number(e.target.value))}
             className="outline-none p-2 text-black sm:text-lg w-1/6"
           />
