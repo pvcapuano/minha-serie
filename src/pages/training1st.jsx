@@ -6,6 +6,7 @@ import {
   doc,
   getDocs,
   addDoc,
+  setDoc,
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -13,9 +14,12 @@ import { db } from "@/config/firebase";
 import { toast } from "react-toastify";
 import CardItem from "@/components/CardItem";
 import Input from "@/components/Input";
+import { useAuth } from "../../context/AuthContext";
 
-const Training1st = () => {
-  const trainingCollectionRef = collection(db, "training");
+const Training1st = (userId) => {
+  const trainingCollectionRef = collection(db, "users", "userId", "workout");
+  const { userInfo, currentUser } = useAuth();
+  const [todos, setTodos] = useState(null);
 
   //states
 
@@ -51,22 +55,46 @@ const Training1st = () => {
   };
 
   const onSubmitTraining = async () => {
-    try {
+    /* try {
       await addDoc(trainingCollectionRef, {
         exercise: newExercise,
         kilos: newKilos,
         round: newRound,
       });
 
+      setNewExercise("");
+      setNewKilos(0);
+      setNewRound(0);
+
       getTrainingList();
     } catch (err) {
       console.error(err);
-    }
+    } */
+
+    const userRef = doc(db, "users", currentUser.uid);
+    const newKey =
+      Object.keys(todos).length === 0 ? 1 : Math.max(...Object.keys(todos)) + 1;
+    setTodos({ ...todos, [newKey]: todo });
+    await setDoc(
+      userRef,
+      {
+        todos: {
+          [newKey]: {
+            exercise: newExercise,
+            kilos: newKilos,
+            round: newRound,
+          },
+        },
+      },
+      { merge: true }
+    );
   };
 
   const deleteTraining = async (id) => {
     const trainingDoc = doc(db, "training", id);
     await deleteDoc(trainingDoc);
+
+    getTrainingList();
   };
 
   const editTraining = (id) => {
@@ -118,25 +146,19 @@ const Training1st = () => {
           Back
         </Link>
         <div className="flex flex-col sm:flex-row justify-between">
-          {/* <input
-            type="text"
-            placeholder="Exercise"
-            onChange={(e) => setNewExercise(e.target.value)}
-            className="outline-none p-2 text-black   sm:text-lg w-3/6"
-          /> */}
-          <Input
+          <input
             type="text"
             placeholder="Exercise"
             onChange={(e) => setNewExercise(e.target.value)}
             className="outline-none p-2 text-black   sm:text-lg w-3/6"
           />
-          <Input
+          <input
             type="number"
             placeholder="Kg"
             onChange={(e) => setNewKilos(Number(e.target.value))}
-            className="outline-none p-2 text-black  sm:text-lg w-1/6"
+            className="outline-none p-2 text-black  sm:text-lg w-1/6 "
           />
-          <Input
+          <input
             type="number"
             placeholder="Round"
             onChange={(e) => setNewRound(Number(e.target.value))}
