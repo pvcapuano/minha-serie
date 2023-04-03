@@ -1,14 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { db } from "@/config/firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
 //posso passar a collection que eu quiser como argumento no c
 
-const useCollection = (c) => {
+const useCollection = (c, _q) => {
   const [documents, setDocuments] = useState(null);
+
+  //set up query
+  const q = useRef(_q).current;
 
   useEffect(() => {
     let ref = collection(db, c);
+
+    if (q) {
+      ref = query(ref, where(...q));
+    }
 
     const unsub = onSnapshot(ref, (snapshot) => {
       let results = [];
@@ -19,7 +26,7 @@ const useCollection = (c) => {
     });
 
     return () => unsub();
-  }, [c]);
+  }, [c, q]);
 
   return { documents };
 };

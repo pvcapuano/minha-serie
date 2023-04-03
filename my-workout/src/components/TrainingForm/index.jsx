@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { db } from "@/config/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 const TrainingForm = () => {
   const [newExercise, setNewExercise] = useState("");
   const [newKilos, setNewKilos] = useState("");
   const [newRound, setNewRound] = useState("");
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const TrainingForm = () => {
       exercise: newExercise,
       kilos: newKilos,
       round: newRound,
+      uid: user.uid,
     });
 
     setNewExercise("");
