@@ -14,7 +14,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      <NavBar />
       dashboard
       {trainings && <TrainingList trainings={trainings} />}
       <TrainingForm />

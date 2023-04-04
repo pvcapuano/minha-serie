@@ -14,6 +14,8 @@ const Login = () => {
 
   async function submitHandler(event) {
     event.preventDefault();
+
+    
     if (!email || !password) {
       toast.error("Complete your email or password.");
       return;
