@@ -64,7 +64,7 @@ const TrainingForm = () => {
             className="outline-none p-2 text-black  sm:text-lg w-1/6 "
           >
             <option value="" selected disabled hidden>
-              Choose a serie
+              Serie
             </option>
             <option value="serieA">Serie A</option>
             <option value="serieB">Serie B</option>
