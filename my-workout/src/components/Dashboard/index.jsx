@@ -1,8 +1,8 @@
-import useCollection from "@/hooks/useCollection";
-import NavBar from "../NavBar";
-import TrainingForm from "../TrainingForm";
-import TrainingList from "../TrainingList";
 import { useAuthContext } from "@/hooks/useAuthContext";
+import Head from "next/head";
+import TrainingList from "@/components/TrainingList";
+import TrainingForm from "@/components/TrainingForm";
+import useCollection from "@/hooks/useCollection";
 
 const Dashboard = () => {
   const { user } = useAuthContext();
@@ -11,12 +11,17 @@ const Dashboard = () => {
     "==",
     user.uid,
   ]);
-
   return (
     <div>
-      dashboard
-      {trainings && <TrainingList trainings={trainings} />}
-      <TrainingForm />
+      <>
+        <Head>
+          <title>My Workout | Trainings</title>
+        </Head>
+        <div>
+          <TrainingForm />
+          {trainings && <TrainingList trainings={trainings} />}
+        </div>
+      </>
     </div>
   );
 };
