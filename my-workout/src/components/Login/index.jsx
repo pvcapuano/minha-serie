@@ -36,20 +36,10 @@ const Login = () => {
       return;
     }
 
-    try {
-      // Log in with email and password
-      const user = await login(email, password);
+    await login(email, password);
 
-      if (user) {
-        setEmail("");
-        setPassword("");
-      } else {
-        toast.error("Invalid email or password.");
-      }
-    } catch (error) {
-      toast.error("An error occurred while logging in. Please try again.");
-      console.error(error);
-    }
+    setEmail("");
+    setPassword("");
   };
 
   return (
