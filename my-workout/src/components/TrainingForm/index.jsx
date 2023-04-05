@@ -7,7 +7,7 @@ const TrainingForm = () => {
   const [newExercise, setNewExercise] = useState("");
   const [newKilos, setNewKilos] = useState("");
   const [newRound, setNewRound] = useState("");
-  const [serie, setSerie] = useState(null);
+  const [serie, setSerie] = useState("");
   const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
@@ -63,6 +63,9 @@ const TrainingForm = () => {
             onChange={(e) => setSerie(e.target.value)}
             className="outline-none p-2 text-black  sm:text-lg w-1/6 "
           >
+            <option value="" selected disabled hidden>
+              Choose a serie
+            </option>
             <option value="serieA">Serie A</option>
             <option value="serieB">Serie B</option>
             <option value="serieC">Serie C</option>
