@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { db } from "@/config/firebase";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import CountdownTimer from "../CountdownTimer";
 
 const TrainingList = ({ trainings }) => {
   //update
@@ -65,12 +66,9 @@ const TrainingList = ({ trainings }) => {
     }
   });
 
-  console.log("aqui a=>", serieA);
-  console.log("aqui b=>", serieB);
-  console.log("aqui c=>", serieC);
-
   return (
     <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col mt-6 gap-3 sm:gap-5">
+      <CountdownTimer />
       <p className="text-2xl font-bold">Serie A</p>
       {serieA.map((training) => (
         <div key={training.id}>
