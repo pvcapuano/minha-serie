@@ -31,7 +31,7 @@ const TrainingForm = () => {
   return (
     <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col gap-3 sm:gap-5">
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col sm:flex-row justify-between">
+        <div className="flex flex-row justify-between">
           <input
             required
             type="text"
