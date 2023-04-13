@@ -3,14 +3,16 @@ import useLogin from "@/hooks/useLogin";
 import Head from "next/head";
 import useGoogleLogin from "@/hooks/useGoogleLogin";
 import { toast } from "react-toastify";
-import Link from "next/link";
+import useSignup from "@/hooks/useSignup";
 
-const Login = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [isLoggingInWithGoogle, setIsLoggingInWithGoogle] = useState(false);
 
   const { error, login } = useLogin();
+  const { signup } = useSignup();
 
   const { googlelogin } = useGoogleLogin();
 
@@ -43,7 +45,7 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>{"My Workout | Login"}</title>
+        <title>{"My Workout | Register"}</title>
       </Head>
 
       <form
@@ -51,7 +53,7 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         <h1 className="font-extrabold select-none text-2xl sm:text-6xl ">
-          Login
+          Register
         </h1>
         <input
           type="text"
@@ -73,10 +75,15 @@ const Login = () => {
           type="submit"
           className="w-full max-w-[40ch] border border-white border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-white after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900"
         >
-          <h2 className="relative z-20">Sign In</h2>
+          <h2 className="relative z-20">Sign Up</h2>
         </button>
-        <h2 className="duration-300 hover:scale-110 cursor-pointer uppercase">
-          <Link href="/signup">Sign Up</Link>
+        <h2
+          onClick={() => {
+            setIsLoggingIn(!isLoggingIn);
+          }}
+          className="duration-300 hover:scale-110 cursor-pointer uppercase"
+        >
+          {!isLoggingIn ? "Sign In" : "Sign Up"}
         </h2>
 
         <label className="w-full max-w-[40ch] py-2 flex items-center justify-center border border-white border-solid duration-300 hover:scale-110 cursor-pointer">
@@ -90,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
