@@ -47,17 +47,14 @@ function CountdownTimer() {
   };
 
   return (
-    <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col bg-black p-2 gap-3 sm:gap-5 ">
-      <h2 className="text-2xl font-bold text-center">
-        {seconds} seconds left!
-      </h2>
+    <div className="w-full max-w-[65ch] text-xs sm:text-sm mx-auto flex flex-col bg-red-600 p-2 gap-3 sm:gap-5 ">
       <div className="flex items-center justify-between">
-        <label htmlFor="seconds-input">Enter number of seconds:</label>
         <input
           type="number"
+          placeholder="Seconds"
           value={seconds}
           onChange={handleInputChange}
-          className="w-20 text-black p-1"
+          className="w-40 text-black p-1"
         />
         <div className="flex justify-between items-center w-20">
           <button
@@ -72,6 +69,11 @@ function CountdownTimer() {
           <button onClick={handleResetClick} disabled={!seconds && !isRunning}>
             Reset
           </button>
+        </div>
+        <div className="border w-32">
+          <h2 className="text-md font-bold text-right">
+            {seconds} seconds left!
+          </h2>
         </div>
       </div>
     </div>
