@@ -1,38 +1,49 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
 function CountdownTimer() {
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    let intervalId;
-
     if (isRunning && seconds > 0) {
-      intervalId = setInterval(() => {
+      intervalRef.current = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
-    }
-
-    if (seconds === 0) {
-      toast.success("Time's up!");
+    } else if (seconds === 0 && showAlert) {
+      clearInterval(intervalRef.current);
       setIsRunning(false);
+      toast.success("Time's up!", {
+        theme: "colored",
+      });
+      setShowAlert(false);
     }
 
-    return () => clearInterval(intervalId);
-  }, [isRunning, seconds]);
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning, seconds, showAlert]);
 
-  const handleStart = () => {
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setSeconds(value);
+  };
+
+  const handlePlayClick = () => {
     setIsRunning(true);
+    setShowAlert(true);
   };
 
-  const handleStop = () => {
+  const handleStopClick = () => {
     setIsRunning(false);
+    setShowAlert(false);
   };
 
-  const handleReset = () => {
+  const handleResetClick = () => {
     setSeconds(0);
     setIsRunning(false);
+    setShowAlert(false);
+    clearInterval(intervalRef.current);
   };
 
   return (
@@ -44,19 +55,21 @@ function CountdownTimer() {
         <label htmlFor="seconds-input">Enter number of seconds:</label>
         <input
           type="number"
-          id="seconds-input"
           value={seconds}
-          onChange={(e) => setSeconds(parseInt(e.target.value))}
+          onChange={handleInputChange}
           className="w-20 text-black p-1"
         />
         <div className="flex justify-between items-center w-20">
-          <button onClick={handleStart} disabled={isRunning}>
+          <button
+            onClick={handlePlayClick}
+            disabled={isRunning || seconds === 0}
+          >
             <i className="fa-solid fa-play"></i>
           </button>
-          <button onClick={handleStop} disabled={!isRunning}>
+          <button onClick={handleStopClick} disabled={!isRunning}>
             <i className="fa-solid fa-stop"></i>
           </button>
-          <button onClick={handleReset} disabled={isRunning}>
+          <button onClick={handleResetClick} disabled={!seconds && !isRunning}>
             Reset
           </button>
         </div>

@@ -10,10 +10,11 @@ const SignUp = () => {
   const { error, signup } = useSignup();
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     signup(email, password);
-    router.push("/");
+
+    await router.push("/");
   };
   return (
     <>
