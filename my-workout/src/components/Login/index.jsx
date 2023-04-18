@@ -1,50 +1,57 @@
+import React, { useState } from "react";
+import useLogin from "@/hooks/useLogin";
 import Head from "next/head";
-import React, { useState, FormEvent } from "react";
+import useGoogleLogin from "@/hooks/useGoogleLogin";
 import { toast } from "react-toastify";
-import { useAuth } from "context/AuthContext";
+import Link from "next/link";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [isLoggingIn, setIsLoggingIn] = useState(true);
+  const [isLoggingInWithGoogle, setIsLoggingInWithGoogle] = useState(false);
 
-  const { login, signup, currentUser, signInWithGoogle } = useAuth();
+  const { error, login } = useLogin();
 
+  const { googlelogin } = useGoogleLogin();
 
-  async function submitHandler(event) {
-    event.preventDefault();
+  const handleGoogleLogin = () => {
+    setIsLoggingInWithGoogle(true);
+    googlelogin();
+  };
 
-    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if user is logging in with Google
+    if (!email && !password && isLoggingInWithGoogle) {
+      googlelogin();
+      return;
+    }
+
+    // Validate email and password
     if (!email || !password) {
       toast.error("Complete your email or password.");
       return;
     }
 
-    if (isLoggingIn) {
-      try {
-        await login(email, password);
-      } catch (err) {
-        toast.error("Incorrect email or password.");
-      }
-      return;
-    }
-    await signup(email, password);
-  }
-  
+    await login(email, password);
+
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <>
       <Head>
-        <title>{`My Workout | ${isLoggingIn ? "Login" : "Register"}`}</title>
+        <title>{"My Workout | Login"}</title>
       </Head>
 
       <form
         className="flex-1 text-xs sm:text-sm flex flex-col justify-center items-center gap-2 sm:gap-4"
-        onSubmit={submitHandler}
+        onSubmit={handleSubmit}
       >
         <h1 className="font-extrabold select-none text-2xl sm:text-6xl ">
-          {isLoggingIn ? "Login" : "Register"}
+          Login
         </h1>
         <input
           type="text"
@@ -66,20 +73,18 @@ const Login = () => {
           type="submit"
           className="w-full max-w-[40ch] border border-white border-solid uppercase py-2 duration-300 relative after:absolute after:top-0 after:right-full after:bg-white after:z-10 after:w-full after:h-full overflow-hidden hover:after:translate-x-full after:duration-300 hover:text-slate-900"
         >
-          <h2 className="relative z-20">
-            {" "}
-            {isLoggingIn ? "Sign In" : "Sign Up"}
-          </h2>
+          <h2 className="relative z-20">Sign In</h2>
         </button>
-        <h2
-          onClick={() => {
-            setIsLoggingIn(!isLoggingIn);
-          }}
-          className="duration-300 hover:scale-110 cursor-pointer uppercase"
-        >
-          {!isLoggingIn ? "Sign In" : "Sign Up"}
+        <h2 className="duration-300 hover:scale-110 cursor-pointer uppercase">
+          <Link href="/signup">Sign Up</Link>
         </h2>
-        <button onClick={signInWithGoogle}>Google</button>
+
+        <label className="w-full max-w-[40ch] py-2 flex items-center justify-center border border-white border-solid duration-300 hover:scale-110 cursor-pointer">
+          <button className="uppercase" onClick={handleGoogleLogin}>
+            Sign In With Google
+            <i className="fa-brands fa-google ml-2"></i>
+          </button>
+        </label>
       </form>
     </>
   );
