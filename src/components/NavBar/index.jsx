@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useLogout from "../../hooks/useLogout";
 import Modal from "../Modal";
 
-const NavBar = () => {
+const Navbar = () => {
   const { logout } = useLogout();
   const [openModal, setOpenModal] = useState(false);
 
@@ -22,4 +22,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
