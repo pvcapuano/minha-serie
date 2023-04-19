@@ -70,7 +70,7 @@ function CountdownTimer() {
             Reset
           </button>
         </div>
-        <div className="border w-32">
+        <div className="w-32">
           <h2 className="text-md font-bold text-right">
             {seconds} seconds left!
           </h2>

@@ -1,10 +1,12 @@
+import { useState } from "react";
+import Dashboard from "../components/Dashboard";
 import Login from "../components/Login";
+import { useAuthContext } from "@/hooks/useAuthContext";
 import Head from "next/head";
-import { useAuth } from "context/AuthContext";
-import UserDashboard from "@/components/UserDashboard";
 
 export default function Home() {
-  const { currentUser } = useAuth();
+  const { user } = useAuthContext();
+
   return (
     <>
       <Head>
@@ -12,8 +14,8 @@ export default function Home() {
         <meta name="Workout" content="Workout serie"></meta>
         <link rel="icon" href="/gym.png" />
       </Head>
-      {!currentUser && <Login />}
-      {currentUser && <UserDashboard />}
+      {!user && <Login />}
+      {user && <Dashboard />}
     </>
   );
 }
