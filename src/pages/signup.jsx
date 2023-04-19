@@ -3,18 +3,21 @@ import useSignup from "@/hooks/useSignup";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
+import useLogin from "@/hooks/useLogin";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { error, signup } = useSignup();
   const router = useRouter();
+  const { login } = useLogin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     signup(email, password);
+    await login(email, password);
 
-    await router.push("/");
+    router.push("/");
   };
   return (
     <>
