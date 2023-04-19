@@ -54,9 +54,9 @@ function CountdownTimer() {
           placeholder="Seconds"
           value={seconds}
           onChange={handleInputChange}
-          className="w-40 text-black p-1"
+          className="w-20 md:w-40 text-black p-1"
         />
-        <div className="flex justify-between items-center w-20">
+        <div className="flex justify-between items-center w-20 ml-3 md:ml-0">
           <button
             onClick={handlePlayClick}
             disabled={isRunning || seconds === 0}

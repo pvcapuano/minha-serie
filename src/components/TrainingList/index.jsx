@@ -73,12 +73,13 @@ const TrainingList = ({ trainings }) => {
       {serieA.map((training) => (
         <div key={training.id}>
           {editExerciseId === training.id ? (
-            <div className="p-2 flex items-center  border border-white border-solid mb-1">
+            <div className="p-2 flex  items-center justify-between  border border-white border-solid mb-1">
               <input
+                type="text"
                 value={updatedExerciseValue}
                 placeholder="Exercise"
                 onChange={(e) => setUpdatedExerciseValue(e.target.value)}
-                className="w-40 mr-3 p-1 text-black placeholder:p-2"
+                className="w-10 md:w-40 mr-3 p-1 text-black placeholder:p-2"
               />
               <div className="flex justify-between items-center">
                 <input
@@ -86,20 +87,20 @@ const TrainingList = ({ trainings }) => {
                   type="number"
                   placeholder="Kg"
                   onChange={(e) => setUpdatedKilos(e.target.value)}
-                  className="w-20 mr-3 p-1 text-black placeholder:p-2"
+                  className="w-10 md:w-20 mr-3 p-1 text-black placeholder:p-2"
                 />
                 <input
                   value={updatedRound}
                   type="number"
                   placeholder="Round"
                   onChange={(e) => setUpdatedRound(e.target.value)}
-                  className="w-20 mr-3 p-1 text-black placeholder:p-2"
+                  className="w-10 md:w-20 mr-3 p-1 text-black placeholder:p-2"
                 />
                 <select
                   required
                   value={updateSerie}
                   onChange={(e) => setUpdateSerie(e.target.value)}
-                  className="w-20 outline-none p-2 text-black  sm:text-lg h-6"
+                  className="w-10 md:w-20 outline-none p-2 text-black  sm:text-lg h-6"
                 >
                   <option value="" selected disabled hidden></option>
                   <option value="serieA">Serie A</option>
@@ -119,11 +120,11 @@ const TrainingList = ({ trainings }) => {
               </div>
             </div>
           ) : (
-            <div className="p-2 flex items-center border border-white border-solid mb-1">
-              <div className="w-60 mr-3">{training.exercise}</div>
+            <div className="p-2 flex justify-between items-center border border-white border-solid mb-1">
+              <p className="w-60 mr-3 truncate">{training.exercise}</p>
               <div className="flex justify-between items-center">
-                <div className="w-20 mr-3">{training.kilos} Kgs</div>
-                <div className="w-20 mr-3">{training.round} Rounds</div>
+                <p className="w-20 mr-3 truncate">{training.kilos} Kgs</p>
+                <p className="w-20 mr-3 truncate">{training.round} Rounds</p>
               </div>
               <div className="w-20 text-white font-medium text-base flex items-center justify-around ">
                 <i
@@ -143,12 +144,13 @@ const TrainingList = ({ trainings }) => {
       {serieB.map((training) => (
         <div key={training.id}>
           {editExerciseId === training.id ? (
-            <div className="p-2 flex items-center  border border-white border-solid mb-1">
+            <div className="p-2 flex items-center justify-between  border border-white border-solid mb-1">
               <input
+                type="text"
                 value={updatedExerciseValue}
                 placeholder="Exercise"
                 onChange={(e) => setUpdatedExerciseValue(e.target.value)}
-                className="w-40 mr-3 p-1 text-black placeholder:p-2"
+                className="w-10 md:w-40 mr-3 p-1 text-black placeholder:p-2"
               />
               <div className="flex justify-between items-center">
                 <input
@@ -156,20 +158,20 @@ const TrainingList = ({ trainings }) => {
                   type="number"
                   placeholder="Kg"
                   onChange={(e) => setUpdatedKilos(e.target.value)}
-                  className="w-20 mr-3 p-1 text-black placeholder:p-2"
+                  className="w-10 md:w-20 mr-3 p-1 text-black placeholder:p-2"
                 />
                 <input
                   value={updatedRound}
                   type="number"
                   placeholder="Round"
                   onChange={(e) => setUpdatedRound(e.target.value)}
-                  className="w-20 mr-3 p-1 text-black placeholder:p-2"
+                  className="w-10 md:w-20 mr-3 p-1 text-black placeholder:p-2"
                 />
                 <select
                   required
                   value={updateSerie}
                   onChange={(e) => setUpdateSerie(e.target.value)}
-                  className="w-20 outline-none p-2 text-black  sm:text-lg h-6"
+                  className="w-10 md:w-20 outline-none p-2 text-black  sm:text-lg h-6"
                 >
                   <option value="" selected disabled hidden></option>
                   <option value="serieA">Serie A</option>
@@ -190,10 +192,10 @@ const TrainingList = ({ trainings }) => {
             </div>
           ) : (
             <div className="p-2 flex items-center border border-white border-solid mb-1">
-              <div className="w-60 mr-3">{training.exercise}</div>
+              <p className="w-60 mr-3 truncate">{training.exercise}</p>
               <div className="flex justify-between items-center">
-                <div className="w-20 mr-3">{training.kilos} Kgs</div>
-                <div className="w-20 mr-3">{training.round} Rounds</div>
+                <p className="w-20 mr-3 truncate">{training.kilos} Kgs</p>
+                <p className="w-20 mr-3 truncate">{training.round} Rounds</p>
               </div>
               <div className="w-20 text-white font-medium text-base flex items-center justify-around ">
                 <i
@@ -213,12 +215,13 @@ const TrainingList = ({ trainings }) => {
       {serieC.map((training) => (
         <div key={training.id}>
           {editExerciseId === training.id ? (
-            <div className="p-2 flex items-center  border border-white border-solid mb-1">
+            <div className="p-2 flex items-center justify-between  border border-white border-solid mb-1">
               <input
+                type="text"
                 value={updatedExerciseValue}
                 placeholder="Exercise"
                 onChange={(e) => setUpdatedExerciseValue(e.target.value)}
-                className="w-40 mr-3 p-1 text-black placeholder:p-2"
+                className="w-10 md:w-40 mr-3 p-1 text-black placeholder:p-2"
               />
               <div className="flex justify-between items-center">
                 <input
@@ -226,20 +229,20 @@ const TrainingList = ({ trainings }) => {
                   type="number"
                   placeholder="Kg"
                   onChange={(e) => setUpdatedKilos(e.target.value)}
-                  className="w-20 mr-3 p-1 text-black placeholder:p-2"
+                  className="w-10 md:w-20 mr-3 p-1 text-black placeholder:p-2"
                 />
                 <input
                   value={updatedRound}
                   type="number"
                   placeholder="Round"
                   onChange={(e) => setUpdatedRound(e.target.value)}
-                  className="w-20 mr-3 p-1 text-black placeholder:p-2"
+                  className="w-10 md:w-20 mr-3 p-1 text-black placeholder:p-2"
                 />
                 <select
                   required
                   value={updateSerie}
                   onChange={(e) => setUpdateSerie(e.target.value)}
-                  className="w-20 outline-none p-2 text-black  sm:text-lg h-6"
+                  className="w-10 md:w-20 outline-none p-2 text-black  sm:text-lg h-6"
                 >
                   <option value="" selected disabled hidden></option>
                   <option value="serieA">Serie A</option>
@@ -260,10 +263,10 @@ const TrainingList = ({ trainings }) => {
             </div>
           ) : (
             <div className="p-2 flex items-center border border-white border-solid mb-1">
-              <div className="w-60 mr-3">{training.exercise}</div>
+              <p className="w-60 mr-3 truncate">{training.exercise}</p>
               <div className="flex justify-between items-center">
-                <div className="w-20 mr-3">{training.kilos} Kgs</div>
-                <div className="w-20 mr-3">{training.round} Rounds</div>
+                <p className="w-20 mr-3 truncate">{training.kilos} Kgs</p>
+                <p className="w-20 mr-3 truncate">{training.round} Rounds</p>
               </div>
               <div className="w-20 text-white font-medium text-base flex items-center justify-around ">
                 <i

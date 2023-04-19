@@ -42,7 +42,7 @@ const TrainingForm = () => {
           />
           <input
             required
-            type="text"
+            type="number"
             onChange={(e) => setNewKilos(e.target.value)}
             value={newKilos}
             placeholder="Kg"
@@ -50,7 +50,7 @@ const TrainingForm = () => {
           />
           <input
             required
-            type="text"
+            type="number"
             onChange={(e) => setNewRound(e.target.value)}
             value={newRound}
             placeholder="Round"
