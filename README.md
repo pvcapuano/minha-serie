@@ -1,38 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Resumo: 
 
-## Getting Started
+--------------
 
-First, run the development server:
+## Rodando o projeto:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+*********
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Projeto
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+![Captura de tela 2023-04-24 183657](https://user-images.githubusercontent.com/10540844/234122151-0c49081a-3022-4529-a9ff-6a89d2373e0d.jpg)
+<sub>Login</sub>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+![Captura de tela 2023-04-19 110041](https://user-images.githubusercontent.com/10540844/234122213-cc3fcd92-f621-443e-b574-c928a5643ef3.jpg)
+<sub>Trainings</sub>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![WhatsApp Image 2023-04-24 at 6 33 35 PM](https://user-images.githubusercontent.com/10540844/234122607-bb13d62d-e6fe-421a-b5c2-42eb89dae8dc.jpeg)
+<sub>Login Mobile</sub>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![WhatsApp Image 2023-04-24 at 6 33 49 PM](https://user-images.githubusercontent.com/10540844/234122655-45418272-0f7c-454b-926b-dcba595243ed.jpeg)
+<sub>Training Mobile</sub>
 
-## Learn More
+## Projeto em produção:
 
-To learn more about Next.js, take a look at the following resources:
+<p>
+ <a href="to-do-list-mvp-pi.vercel.app" target="_blank"> 
+  <img src="https://ml.globenewswire.com/Resource/Download/3a54c241-a668-4c94-9747-3d3da9da3bf2?size=2" alt="Vercel" width="100"/> 
+ </a>
+</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tecnologias:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* NextJs
+* React Hooks
+* Tailwind
+* Firebase
+* Toastify
+* Prettier
 
-## Deploy on Vercel
+## Objetivo:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---------------
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Atividades realizadas:
+
+---------------------
+ 
