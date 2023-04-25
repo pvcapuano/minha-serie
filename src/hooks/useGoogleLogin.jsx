@@ -12,10 +12,10 @@ const useGoogleLogin = () => {
   const { dispatch } = useAuthContext();
   const provider = new GoogleAuthProvider();
 
-  const googlelogin = () => {
+  const googlelogin = async () => {
     setError(null);
 
-    signInWithPopup(auth, provider)
+    await signInWithPopup(auth, provider)
       .then((res) => {
         dispatch({ type: "LOGIN", payload: res.user });
       })
