@@ -79,12 +79,12 @@ const Login = () => {
           <Link href="/signup">Sign Up</Link>
         </h2>
 
-        <label className="w-full max-w-[40ch] py-2 flex items-center justify-center border border-white border-solid duration-300 hover:scale-110 cursor-pointer">
+        {/*  <label className="w-full max-w-[40ch] py-2 flex items-center justify-center border border-white border-solid duration-300 hover:scale-110 cursor-pointer">
           <button className="uppercase" onClick={handleGoogleLogin}>
             Sign In With Google
             <i className="fa-brands fa-google ml-2"></i>
           </button>
-        </label>
+        </label> */}
       </form>
     </>
   );
