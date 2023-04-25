@@ -19,7 +19,7 @@ Com essa aplicação, o usuário pode organizar seus treinos de forma mais efici
 
 ## Solução:
 
-* Cadastro, edição e deleção de exercícios;
+* Cadastro, edição e remoção de exercícios;
 * Organização das séries em A, B ou C;
 * Controle personalizado do tempo de descanso entre as séries;
 * Acesso exclusivo e seguro através da autenticação com o Firebase. 
