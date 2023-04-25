@@ -35,10 +35,10 @@ yarn dev  <br/>
 
 ## Telas:
 
-![Captura de tela 2023-04-24 183657](https://user-images.githubusercontent.com/10540844/234122151-0c49081a-3022-4529-a9ff-6a89d2373e0d.jpg)
+![image](https://user-images.githubusercontent.com/10540844/234419117-166f229d-6555-4eb3-9ea1-ce596ecdf773.png)
 <sub>Login</sub>
 
-![WhatsApp Image 2023-04-24 at 6 33 35 PM](https://user-images.githubusercontent.com/10540844/234122607-bb13d62d-e6fe-421a-b5c2-42eb89dae8dc.jpeg)
+![WhatsApp Image 2023-04-25 at 7 39 40 PM](https://user-images.githubusercontent.com/10540844/234419757-d0c2d94d-e3ab-4af2-8cde-1267c651973d.jpeg)
 
 ![Captura de tela 2023-04-19 110041](https://user-images.githubusercontent.com/10540844/234122213-cc3fcd92-f621-443e-b574-c928a5643ef3.jpg)
 <sub>Trainings</sub>
