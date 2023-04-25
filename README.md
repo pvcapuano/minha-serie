@@ -45,6 +45,8 @@ yarn dev  <br/>
 
 ![WhatsApp Image 2023-04-24 at 6 33 49 PM](https://user-images.githubusercontent.com/10540844/234122655-45418272-0f7c-454b-926b-dcba595243ed.jpeg)
 
+![image](https://user-images.githubusercontent.com/10540844/234421209-98d76a5b-03ae-4636-a745-03539e9743e2.png)
+<sub>Stopwatch alert</sub>
 
 ## Projeto em produção:
 
