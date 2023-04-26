@@ -19,7 +19,7 @@ Com essa aplicação, o usuário pode organizar seus treinos de forma mais efici
 
 ## Solução:
 
-* Cadastro, edição e deleção de exercícios;
+* Cadastro, edição e remoção de exercícios;
 * Organização das séries em A, B ou C;
 * Controle personalizado do tempo de descanso entre as séries;
 * Acesso exclusivo e seguro através da autenticação com o Firebase. 
@@ -28,28 +28,40 @@ Com essa aplicação, o usuário pode organizar seus treinos de forma mais efici
 
 ## Rodando o projeto:
 
-git clone https://github.com/pvcapuano/my-workout.git <br/>
-cd my-workout  <br/>
-yarn install  <br/>
-yarn dev  <br/>
+No terminal, digite: 
+
+```
+git clone https://github.com/pvcapuano/my-workout.git
+cd my-workout 
+yarn install 
+yarn dev
+```
 
 ## Telas:
 
-![Captura de tela 2023-04-24 183657](https://user-images.githubusercontent.com/10540844/234122151-0c49081a-3022-4529-a9ff-6a89d2373e0d.jpg)
+![image](https://user-images.githubusercontent.com/10540844/234419117-166f229d-6555-4eb3-9ea1-ce596ecdf773.png)
 <sub>Login</sub>
 
-![WhatsApp Image 2023-04-24 at 6 33 35 PM](https://user-images.githubusercontent.com/10540844/234122607-bb13d62d-e6fe-421a-b5c2-42eb89dae8dc.jpeg)
+![WhatsApp Image 2023-04-25 at 7 39 40 PM](https://user-images.githubusercontent.com/10540844/234419757-d0c2d94d-e3ab-4af2-8cde-1267c651973d.jpeg)
 
 ![Captura de tela 2023-04-19 110041](https://user-images.githubusercontent.com/10540844/234122213-cc3fcd92-f621-443e-b574-c928a5643ef3.jpg)
 <sub>Trainings</sub>
 
 ![WhatsApp Image 2023-04-24 at 6 33 49 PM](https://user-images.githubusercontent.com/10540844/234122655-45418272-0f7c-454b-926b-dcba595243ed.jpeg)
 
+![image](https://user-images.githubusercontent.com/10540844/234421209-98d76a5b-03ae-4636-a745-03539e9743e2.png)
+<sub>Stopwatch alert</sub>
+
+![Captura de tela 2023-04-26 121308](https://user-images.githubusercontent.com/10540844/234642929-0715c01d-d99a-4cef-8cc4-de4a24d39815.jpg)
+<sub>Firebase Firestore</sub>
+
+![image](https://user-images.githubusercontent.com/10540844/234644386-08640d21-e4c1-4cdb-a1f0-b921f78d9f95.png)
+<sub>Context with Redux</sub>
 
 ## Projeto em produção:
 
 <p>
- <a href="to-do-list-mvp-pi.vercel.app" target="_blank"> 
+ <a href="https://my-workout-kw91.vercel.app/" target="_blank"> 
   <img src="https://ml.globenewswire.com/Resource/Download/3a54c241-a668-4c94-9747-3d3da9da3bf2?size=2" alt="Vercel" width="100"/> 
  </a>
 </p>
@@ -60,6 +72,7 @@ yarn dev  <br/>
 * React Hooks
 * Context
 * Custom Hooks
+* Redux
 * Tailwind
 * Toastify
 * Firebase Firestore
