@@ -28,10 +28,14 @@ Com essa aplicação, o usuário pode organizar seus treinos de forma mais efici
 
 ## Rodando o projeto:
 
-git clone https://github.com/pvcapuano/my-workout.git <br/>
-cd my-workout  <br/>
-yarn install  <br/>
-yarn dev  <br/>
+No terminal, digite: 
+
+```
+git clone https://github.com/pvcapuano/my-workout.git
+cd my-workout 
+yarn install 
+yarn dev
+```
 
 ## Telas:
 
@@ -48,6 +52,12 @@ yarn dev  <br/>
 ![image](https://user-images.githubusercontent.com/10540844/234421209-98d76a5b-03ae-4636-a745-03539e9743e2.png)
 <sub>Stopwatch alert</sub>
 
+![Captura de tela 2023-04-26 121308](https://user-images.githubusercontent.com/10540844/234642929-0715c01d-d99a-4cef-8cc4-de4a24d39815.jpg)
+<sub>Firebase Firestore</sub>
+
+![image](https://user-images.githubusercontent.com/10540844/234644386-08640d21-e4c1-4cdb-a1f0-b921f78d9f95.png)
+<sub>Context with Redux</sub>
+
 ## Projeto em produção:
 
 <p>
@@ -62,6 +72,7 @@ yarn dev  <br/>
 * React Hooks
 * Context
 * Custom Hooks
+* Redux
 * Tailwind
 * Toastify
 * Firebase Firestore
